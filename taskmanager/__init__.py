@@ -1,18 +1,12 @@
 import os
+import re
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 if os.path.exists("env.py"):
     import env  # noqa
 
 
-def create_app():
-    app = Flask(__name__)
-
-    with app.app_context():
-        init_db()
-
-    return app
-    
+app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
 if os.environ.get("DEVELOPMENT") == "True":
